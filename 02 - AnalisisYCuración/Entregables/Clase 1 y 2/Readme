@@ -1,0 +1,23 @@
+Para correr Notebook.
+
+1) Hacer un pull a la carpeta "Clase 1 y 2" del repositorio enviado. 
+2) Bajar docker image : "docker pull jupyter/datascience-notebook"
+3) Ejecutar docker image : "sudo docker run -p 8888:8888 jupyter/datascience-notebook"
+  Buscar en la terminal donde diga:
+ 	"Or copy and paste one of these URLs:
+		http://(3c44783fd78b or 127.0.0.1):8888/?token=3c20c146f7c6464cf75e4af68069965e8e5e9a8157ec2795 
+	"
+   Copiar el token luego de donde dice "token=" hasta el final de linea
+
+4) Abrir el firefox y poner la url "localhost:8888" y poner el token para hacer login
+5) Abrir una terminal en jupiter desde "New" --> "Terminal"
+6) Instalar paquete necesario con el siguiente comando:
+  	 pip install ftfy
+   Cerrar Terminal Jupiter
+7) Presionar "Upload" y subir el archivo llamado "TP1.ipynb".
+8) Crear una carpeta llamada "datasets" desde "New" --> "Folder"
+9) Ingresar a la carpeta "datasets", presionar "Upload" y subir los 3 archivos de la carpeta datasets: "ks-projects-201801.csv" - "pasos.json" - "wtagef.csv"
+10) Volver a la carpeta anterior y abrir "TP1.ipynb" y ejecutar Notebook.
+
+ 
+
