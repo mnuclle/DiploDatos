@@ -1,0 +1,33 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+***
+## Practico 2: Entregar un Rmd donde se:
+
+- Elija un dataset clasificado de su preferencia y area (domain expertise), aplique un metodo de clustering y/o mixtura de Gaussianas en el mismo.
+
+- Investigue los resultados en el meta parametro $K$ numero de cumulos e investigue posibles procesos de seleccion del mismo.
+
+- Elabore un resumen, y selecione un mejor valor segun el/los criterios aplicados, discuta el significado de los cumulos
+encontrados. 
+
+- Comente la influencia de la normalizacion de los datos en los resultados del clustering.
+
+
+
+
+```{r echo=TRUE}
+
+b <- read.csv("Data.csv")
+print(b)
+```
+
+C:\Users\Agustina-Notebook\Documents\DiploDatos\Repopracticos\DiploDatos\02 - AnalisisYCuración\Entregables\Clase 1 y 2\datasets
+
+NO SUPERVISADO
+TP2_BlackFriday.csv
+
+SUPERVISADO
+TP2_Google-Playstore-32K.csv
