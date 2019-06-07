@@ -1778,10 +1778,68 @@ $(document).ready(function () {
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5iIDwtIHJlYWQuY3N2KFwiRGF0YS5jc3ZcIilcbnByaW50KGIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZiA8LSByZWFkLmNzdihcImRmX3Byb3BfY2xlYW4uY3N2XCIpXG5wcmludChkZilcbmBgYCJ9 -->
 <pre class="r"><code>
-b &lt;- read.csv(&quot;Data.csv&quot;)
-print(b)</code></pre>
+df &lt;- read.csv(&quot;df_prop_clean.csv&quot;)
+print(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfcHJvcF90eXBlIDwtIGRmWyxjKDE0KV1cblxuZGZfdHJhaW4gPC0gZGZbMTo1MDAwLC0xNF0gXG5kZl90ZXN0IDwtIGRmWzUwMDE6NzcxNiwtMTRdXG5cbmBgYCJ9 -->
+<pre class="r"><code>df_prop_type &lt;- df[,c(14)]
+
+df_train &lt;- df[1:5000,-14] 
+df_test &lt;- df[5001:7716,-14]
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfdHJhaW5cbnN0cihkZl90cmFpbilcbmBgYCJ9 -->
+<pre class="r"><code>df_train
+str(df_train)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGNhLnRyYWluIDwtIGRmX3RyYWluXG5wY2EudGVzdCA8LSBkZl90ZXN0XG5gYGAifQ== -->
+<pre class="r"><code>pca.train &lt;- df_train
+pca.test &lt;- df_test</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI3ByaW5jaXBhbCBjb21wb25lbnQgYW5hbHlzaXNcbnByaW5fY29tcCA8LSBwcmNvbXAocGNhLnRyYWluLCBzY2FsZS4gPSBUUlVFKVxucHJpbnQocHJpbl9jb21wKVxuYGBgIn0= -->
+<pre class="r"><code>#principal component analysis
+prin_comp &lt;- prcomp(pca.train, scale. = TRUE)
+print(prin_comp)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzdW1tYXJ5IG1ldGhvZFxuc3VtbWFyeShwY2EudHJhaW4pXG5cblxuYGBgIn0= -->
+<pre class="r"><code># summary method
+summary(pca.train)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzdW1tYXJ5IG1ldGhvZFxucGxvdChwY2EudHJhaW4keFssMToyXSwgY29sPSBkZl9wcm9wX3R5cGUpXG5cbmBgYCJ9 -->
+<pre class="r"><code># summary method
+plot(pca.train$x[,1:2], col= df_prop_type)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1789,9 +1847,121 @@ print(b)</code></pre>
 <p>NO SUPERVISADO TP2_BlackFriday.csv</p>
 <p>SUPERVISADO TP2_Google-Playstore-32K.csv</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA8LSByZWFkLmNzdihcImRmX3Byb3BfY2xlYW4uY3N2XCIpXG5wcmludChkYXRhKVxuYGBgIn0= -->
+<pre class="r"><code>data &lt;- read.csv(&quot;df_prop_clean.csv&quot;)
+print(data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<hr />
+<div id="entendiendo-los-datos" class="section level3">
+<h3>Entendiendo los datos:</h3>
+<p>Independientemente del metodo de ML aplicado, las variables de identificacion <strong>deben</strong> ser excluidas. No hacerlo puede llevar a hallazgos erroneos a causa de que la identificacion puede ser utilizada para predecir muy bien. La siguiente variable, el diagnostico es de particular interes, por que es lo que se quiere predecir.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGUoZGF0YSRWMzIpXG5gYGAifQ== -->
+<pre class="r"><code>table(data$V32)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Ya que estamos miremos el resto de las variables, sus rangos etc.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShkYXRhKVxuYGBgIn0= -->
+<pre class="r"><code>summary(data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<hr />
+</div>
+<div id="transformacion-de-los-datos" class="section level3">
+<h3>Transformacion de los datos:</h3>
+<p>Necesitamos crear una funcion normalizacion en R:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubm9ybWFsaXplIDwtIGZ1bmN0aW9uKHgpIHtcbiAgcmV0dXJuICgoeC1taW4oeCkpLyhtYXgoeCktbWluKHgpKSlcbn1cbmBgYCJ9 -->
+<pre class="r"><code>normalize &lt;- function(x) {
+  return ((x-min(x))/(max(x)-min(x)))
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Despues de ejecutar el codigo previo, la funcion esta disponible para sus uso. Veamos si funciona en algunos vectores.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubm9ybWFsaXplKGMoMSwyLDMsNCw1KSlcbm5vcm1hbGl6ZShjKDEwLDIwLDMwLDQwLDUwKSlcbmBgYCJ9 -->
+<pre class="r"><code>normalize(c(1,2,3,4,5))
+normalize(c(10,20,30,40,50))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>No podemos aplicar la funcion a los features numericos del dataframe directamente.</p>
+<hr />
+</div>
+<div id="transformacion-de-los-datos-1" class="section level3">
+<h3>Transformacion de los datos:</h3>
+<p>La funcion lapply() de R toma una lista y aplica una funcion a cada elemento de la lista.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV9uIDwtIGFzLmRhdGEuZnJhbWUobGFwcGx5KGRhdGFbMTozMV0sIG5vcm1hbGl6ZSkpXG5zdW1tYXJ5KGRhdGFfbiRWMylcbnN1bW1hcnkoZGF0YV9uJFY4KVxuYGBgIn0= -->
+<pre class="r"><code>data_n &lt;- as.data.frame(lapply(data[1:31], normalize))
+summary(data_n$V3)
+summary(data_n$V8)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Bingo! En ausencia de nuevos datos de laboratorio, vamos a simular este escenario dividiendo nuestros datos en una <strong>muestra de entrenamiento</strong> que usaremos para construir el modelo kNN y una <strong>muestra de validacion</strong> que usaremos para medir la precision predictiva del mismo.</p>
+<hr />
+</div>
+<div id="entrenando-un-clasificador" class="section level3">
+<h3>Entrenando un clasificador:</h3>
+<p>Notese que dichos conjuntos de datos deben ser representativos del conjunto de datos, i.e. <strong>metodos de muestreo aleatorios</strong>!</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV90cmFpbiA8LSBkYXRhX25bMTo1MDAwLCBdXG5kYXRhX3Rlc3QgIDwtIGRhdGFfbls1MDAxOjc2MTYsIF0gXG5gYGAifQ== -->
+<pre class="r"><code>data_train &lt;- data_n[1:5000, ]
+data_test  &lt;- data_n[5001:7616, ] </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Excluimos la variable objetivo (Benigno/Maligno), pero necesitamos guardar estos factores en vectores!</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV90cmFpbl9sYWJlbHMgPC0gZGF0YVsxOjUwMDAsIDFdXG5kYXRhX3Rlc3RfbGFiZWxzICA8LSBkYXRhWzUwMDE6NzYxNiwgMV1cbmBgYCJ9 -->
+<pre class="r"><code>data_train_labels &lt;- data[1:5000, 1]
+data_test_labels  &lt;- data[5001:7616, 1]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Para el algoritmo kNN la fase de entrenamiento no involucra construir un modelo, para clasificar nuestros datos de validacion utilizaremos el paquete class, instalarlo ia!</p>
+<p>La datos de validacion son clasificados tomando los votos entre los k vecinos mas cercanos del conjunto de entrenamiento. Si hay empate se decide aleatoriamente. Entonces usamos la funcion knn() para clasificar.</p>
+<hr />
+</div>
+<div id="evaluando-la-performance-del-modelo." class="section level3">
+<h3>Evaluando la performance del modelo.</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjbGFzcylcbmRhdGFfdGVzdF9wcmVkIDwtIGtubih0cmFpbj1kYXRhX3RyYWluLCB0ZXN0PWRhdGFfdGVzdCwgY2w9ZGF0YV90cmFpbl9sYWJlbHMsIGs9MjEpXG5gYGAifQ== -->
+<pre class="r"><code>library(class)
+data_test_pred &lt;- knn(train=data_train, test=data_test, cl=data_train_labels, k=21)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>El siguiente paso en el proceso es evaluar como las clases predichas en data_test_pred se condicen con los valores verdaderos en el vector data_test_labels.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnbW9kZWxzKVxuQ3Jvc3NUYWJsZSh4PWRhdGFfdGVzdF9sYWJlbHMsIHk9ZGF0YV90ZXN0X3ByZWQsIHByb3AuY2hpc3EgPSBGQUxTRSlcbmBgYCJ9 -->
+<pre class="r"><code>library(gmodels)
+CrossTable(x=data_test_labels, y=data_test_pred, prop.chisq = FALSE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoqKioNCiMjIFByYWN0aWNvIDI6IEVudHJlZ2FyIHVuIFJtZCBkb25kZSBzZToNCg0KLSBFbGlqYSB1biBkYXRhc2V0IGNsYXNpZmljYWRvIGRlIHN1IHByZWZlcmVuY2lhIHkgYXJlYSAoZG9tYWluIGV4cGVydGlzZSksIGFwbGlxdWUgdW4gbWV0b2RvIGRlIGNsdXN0ZXJpbmcgeS9vIG1peHR1cmEgZGUgR2F1c3NpYW5hcyBlbiBlbCBtaXNtby4NCg0KLSBJbnZlc3RpZ3VlIGxvcyByZXN1bHRhZG9zIGVuIGVsIG1ldGEgcGFyYW1ldHJvICRLJCBudW1lcm8gZGUgY3VtdWxvcyBlIGludmVzdGlndWUgcG9zaWJsZXMgcHJvY2Vzb3MgZGUgc2VsZWNjaW9uIGRlbCBtaXNtby4NCg0KLSBFbGFib3JlIHVuIHJlc3VtZW4sIHkgc2VsZWNpb25lIHVuIG1lam9yIHZhbG9yIHNlZ3VuIGVsL2xvcyBjcml0ZXJpb3MgYXBsaWNhZG9zLCBkaXNjdXRhIGVsIHNpZ25pZmljYWRvIGRlIGxvcyBjdW11bG9zDQplbmNvbnRyYWRvcy4gDQoNCi0gQ29tZW50ZSBsYSBpbmZsdWVuY2lhIGRlIGxhIG5vcm1hbGl6YWNpb24gZGUgbG9zIGRhdG9zIGVuIGxvcyByZXN1bHRhZG9zIGRlbCBjbHVzdGVyaW5nLg0KDQoNCg0KDQpgYGB7ciBlY2hvPVRSVUV9DQoNCmIgPC0gcmVhZC5jc3YoIkRhdGEuY3N2IikNCnByaW50KGIpDQpgYGANCg0KQzpcVXNlcnNcQWd1c3RpbmEtTm90ZWJvb2tcRG9jdW1lbnRzXERpcGxvRGF0b3NcUmVwb3ByYWN0aWNvc1xEaXBsb0RhdG9zXDAyIC0gQW5hbGlzaXNZQ3VyYWNpw7NuXEVudHJlZ2FibGVzXENsYXNlIDEgeSAyXGRhdGFzZXRzDQoNCk5PIFNVUEVSVklTQURPDQpUUDJfQmxhY2tGcmlkYXkuY3N2DQoNClNVUEVSVklTQURPDQpUUDJfR29vZ2xlLVBsYXlzdG9yZS0zMksuY3N2</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoqKioNCiMjIFByYWN0aWNvIDI6IEVudHJlZ2FyIHVuIFJtZCBkb25kZSBzZToNCg0KLSBFbGlqYSB1biBkYXRhc2V0IGNsYXNpZmljYWRvIGRlIHN1IHByZWZlcmVuY2lhIHkgYXJlYSAoZG9tYWluIGV4cGVydGlzZSksIGFwbGlxdWUgdW4gbWV0b2RvIGRlIGNsdXN0ZXJpbmcgeS9vIG1peHR1cmEgZGUgR2F1c3NpYW5hcyBlbiBlbCBtaXNtby4NCg0KLSBJbnZlc3RpZ3VlIGxvcyByZXN1bHRhZG9zIGVuIGVsIG1ldGEgcGFyYW1ldHJvICRLJCBudW1lcm8gZGUgY3VtdWxvcyBlIGludmVzdGlndWUgcG9zaWJsZXMgcHJvY2Vzb3MgZGUgc2VsZWNjaW9uIGRlbCBtaXNtby4NCg0KLSBFbGFib3JlIHVuIHJlc3VtZW4sIHkgc2VsZWNpb25lIHVuIG1lam9yIHZhbG9yIHNlZ3VuIGVsL2xvcyBjcml0ZXJpb3MgYXBsaWNhZG9zLCBkaXNjdXRhIGVsIHNpZ25pZmljYWRvIGRlIGxvcyBjdW11bG9zDQplbmNvbnRyYWRvcy4gDQoNCi0gQ29tZW50ZSBsYSBpbmZsdWVuY2lhIGRlIGxhIG5vcm1hbGl6YWNpb24gZGUgbG9zIGRhdG9zIGVuIGxvcyByZXN1bHRhZG9zIGRlbCBjbHVzdGVyaW5nLg0KDQoNCg0KDQpgYGB7ciBlY2hvPVRSVUV9DQoNCmRmIDwtIHJlYWQuY3N2KCJkZl9wcm9wX2NsZWFuLmNzdiIpDQpwcmludChkZikNCmBgYA0KDQoNCg0KYGBge3IgZWNobz1UUlVFfQ0KZGZfcHJvcF90eXBlIDwtIGRmWyxjKDE0KV0NCg0KZGZfdHJhaW4gPC0gZGZbMTo1MDAwLC0xNF0gDQpkZl90ZXN0IDwtIGRmWzUwMDE6NzcxNiwtMTRdDQoNCmBgYA0KDQpgYGB7ciBlY2hvPVRSVUV9DQpkZl90cmFpbg0Kc3RyKGRmX3RyYWluKQ0KYGBgDQoNCmBgYHtyIGVjaG89VFJVRX0NCnBjYS50cmFpbiA8LSBkZl90cmFpbg0KcGNhLnRlc3QgPC0gZGZfdGVzdA0KYGBgDQoNCmBgYHtyIGVjaG89VFJVRX0NCiNwcmluY2lwYWwgY29tcG9uZW50IGFuYWx5c2lzDQpwcmluX2NvbXAgPC0gcHJjb21wKHBjYS50cmFpbiwgc2NhbGUuID0gVFJVRSkNCnByaW50KHByaW5fY29tcCkNCmBgYA0KDQoNCmBgYHtyIGVjaG89RkFMU0V9DQojIHBsb3QgbWV0aG9kDQpwbG90KHBjYS50cmFpbiwgdHlwZSA9ICJsIikNCmBgYA0KDQpgYGB7ciBlY2hvPVRSVUV9DQojIHN1bW1hcnkgbWV0aG9kDQpzdW1tYXJ5KHBjYS50cmFpbikNCg0KDQpgYGANCg0KYGBge3IgZWNobz1UUlVFfQ0KIyBzdW1tYXJ5IG1ldGhvZA0KcGxvdChwY2EudHJhaW4keFssMToyXSwgY29sPSBkZl9wcm9wX3R5cGUpDQoNCmBgYA0KDQoNCkM6XFVzZXJzXEFndXN0aW5hLU5vdGVib29rXERvY3VtZW50c1xEaXBsb0RhdG9zXFJlcG9wcmFjdGljb3NcRGlwbG9EYXRvc1wwMiAtIEFuYWxpc2lzWUN1cmFjacOzblxFbnRyZWdhYmxlc1xDbGFzZSAxIHkgMlxkYXRhc2V0cw0KDQpOTyBTVVBFUlZJU0FETw0KVFAyX0JsYWNrRnJpZGF5LmNzdg0KDQpTVVBFUlZJU0FETw0KVFAyX0dvb2dsZS1QbGF5c3RvcmUtMzJLLmNzdg0KDQpgYGB7ciBlY2hvPVRSVUV9DQpkYXRhIDwtIHJlYWQuY3N2KCJkZl9wcm9wX2NsZWFuLmNzdiIpDQpwcmludChkYXRhKQ0KYGBgDQoNCg0KDQoqKioNCiMjIyBFbnRlbmRpZW5kbyBsb3MgZGF0b3M6DQpJbmRlcGVuZGllbnRlbWVudGUgZGVsIG1ldG9kbyBkZSBNTCBhcGxpY2FkbywgbGFzIHZhcmlhYmxlcyBkZSBpZGVudGlmaWNhY2lvbiAqKmRlYmVuKiogc2VyIGV4Y2x1aWRhcy4gTm8gaGFjZXJsbyBwdWVkZSBsbGV2YXIgYSBoYWxsYXpnb3MgZXJyb25lb3MgYSBjYXVzYSBkZSBxdWUgbGEgaWRlbnRpZmljYWNpb24gcHVlZGUgc2VyIHV0aWxpemFkYSBwYXJhIHByZWRlY2lyIG11eSBiaWVuLg0KTGEgc2lndWllbnRlIHZhcmlhYmxlLCBlbCBkaWFnbm9zdGljbyBlcyBkZSBwYXJ0aWN1bGFyIGludGVyZXMsIHBvciBxdWUgZXMgbG8gcXVlIHNlIHF1aWVyZSBwcmVkZWNpci4NCg0KDQpgYGB7ciBlY2hvPVRSVUV9DQp0YWJsZShkYXRhJFYzMikNCmBgYA0KDQpZYSBxdWUgZXN0YW1vcyBtaXJlbW9zIGVsIHJlc3RvIGRlIGxhcyB2YXJpYWJsZXMsIHN1cyByYW5nb3MgZXRjLg0KDQpgYGB7ciBlY2hvPVRSVUV9DQpzdW1tYXJ5KGRhdGEpDQpgYGANCg0KKioqDQojIyMgVHJhbnNmb3JtYWNpb24gZGUgbG9zIGRhdG9zOg0KDQpOZWNlc2l0YW1vcyBjcmVhciB1bmEgZnVuY2lvbiBub3JtYWxpemFjaW9uIGVuIFI6DQoNCmBgYHtyIGVjaG89VFJVRX0NCm5vcm1hbGl6ZSA8LSBmdW5jdGlvbih4KSB7DQogIHJldHVybiAoKHgtbWluKHgpKS8obWF4KHgpLW1pbih4KSkpDQp9DQpgYGANCg0KRGVzcHVlcyBkZSBlamVjdXRhciBlbCBjb2RpZ28gcHJldmlvLCBsYSBmdW5jaW9uIGVzdGEgZGlzcG9uaWJsZSBwYXJhIHN1cyB1c28uIFZlYW1vcyBzaSBmdW5jaW9uYSBlbiBhbGd1bm9zIHZlY3RvcmVzLg0KDQpgYGB7ciBlY2hvPVRSVUV9DQpub3JtYWxpemUoYygxLDIsMyw0LDUpKQ0Kbm9ybWFsaXplKGMoMTAsMjAsMzAsNDAsNTApKQ0KYGBgDQoNCk5vIHBvZGVtb3MgYXBsaWNhciBsYSBmdW5jaW9uIGEgbG9zIGZlYXR1cmVzIG51bWVyaWNvcyBkZWwgZGF0YWZyYW1lIGRpcmVjdGFtZW50ZS4NCg0KKioqDQojIyMgVHJhbnNmb3JtYWNpb24gZGUgbG9zIGRhdG9zOg0KDQpMYSBmdW5jaW9uIGxhcHBseSgpIGRlIFIgdG9tYSB1bmEgbGlzdGEgeSBhcGxpY2EgdW5hIGZ1bmNpb24gYSBjYWRhIGVsZW1lbnRvIGRlIGxhIGxpc3RhLg0KDQoNCmBgYHtyIGVjaG89VFJVRX0NCmRhdGFfbiA8LSBhcy5kYXRhLmZyYW1lKGxhcHBseShkYXRhWzE6MzFdLCBub3JtYWxpemUpKQ0Kc3VtbWFyeShkYXRhX24kVjMpDQpzdW1tYXJ5KGRhdGFfbiRWOCkNCmBgYA0KDQpCaW5nbyEgIEVuIGF1c2VuY2lhIGRlIG51ZXZvcyBkYXRvcyBkZSBsYWJvcmF0b3JpbywgdmFtb3MgYSBzaW11bGFyIGVzdGUgZXNjZW5hcmlvIGRpdmlkaWVuZG8gDQpudWVzdHJvcyBkYXRvcyBlbiB1bmEgKiptdWVzdHJhIGRlIGVudHJlbmFtaWVudG8qKiAgcXVlIHVzYXJlbW9zIHBhcmEgY29uc3RydWlyIGVsIG1vZGVsbyBrTk4gDQp5IHVuYSAqKm11ZXN0cmEgZGUgdmFsaWRhY2lvbioqIHF1ZSB1c2FyZW1vcyBwYXJhIG1lZGlyIGxhIHByZWNpc2lvbiBwcmVkaWN0aXZhIGRlbCBtaXNtby4NCg0KKioqDQojIyMgRW50cmVuYW5kbyB1biBjbGFzaWZpY2Fkb3I6DQoNCk5vdGVzZSBxdWUgZGljaG9zIGNvbmp1bnRvcyBkZSBkYXRvcyBkZWJlbiBzZXIgcmVwcmVzZW50YXRpdm9zIGRlbCBjb25qdW50byBkZSBkYXRvcywgaS5lLiAqKm1ldG9kb3MgZGUgbXVlc3RyZW8gYWxlYXRvcmlvcyoqIQ0KDQpgYGB7ciBlY2hvPVRSVUV9DQpkYXRhX3RyYWluIDwtIGRhdGFfblsxOjUwMDAsIF0NCmRhdGFfdGVzdCAgPC0gZGF0YV9uWzUwMDE6NzYxNiwgXSANCmBgYA0KDQpFeGNsdWltb3MgbGEgdmFyaWFibGUgb2JqZXRpdm8gKEJlbmlnbm8vTWFsaWdubyksIHBlcm8gbmVjZXNpdGFtb3MgZ3VhcmRhciBlc3RvcyBmYWN0b3JlcyBlbiB2ZWN0b3JlcyENCg0KYGBge3IgZWNobz1UUlVFfQ0KZGF0YV90cmFpbl9sYWJlbHMgPC0gZGF0YVsxOjUwMDAsIDFdDQpkYXRhX3Rlc3RfbGFiZWxzICA8LSBkYXRhWzUwMDE6NzYxNiwgMV0NCmBgYA0KDQoNClBhcmEgZWwgYWxnb3JpdG1vIGtOTiBsYSBmYXNlIGRlIGVudHJlbmFtaWVudG8gbm8gaW52b2x1Y3JhIGNvbnN0cnVpciB1biBtb2RlbG8sIHBhcmENCmNsYXNpZmljYXIgbnVlc3Ryb3MgZGF0b3MgZGUgdmFsaWRhY2lvbiB1dGlsaXphcmVtb3MgZWwgcGFxdWV0ZSBjbGFzcywgaW5zdGFsYXJsbyBpYSENCg0KTGEgZGF0b3MgZGUgdmFsaWRhY2lvbiBzb24gY2xhc2lmaWNhZG9zIHRvbWFuZG8gbG9zIHZvdG9zIGVudHJlIGxvcyBrIHZlY2lub3MgbWFzIGNlcmNhbm9zDQpkZWwgY29uanVudG8gZGUgZW50cmVuYW1pZW50by4gU2kgaGF5IGVtcGF0ZSBzZSBkZWNpZGUgYWxlYXRvcmlhbWVudGUuIEVudG9uY2VzIHVzYW1vcw0KbGEgZnVuY2lvbiBrbm4oKSBwYXJhIGNsYXNpZmljYXIuDQoNCioqKg0KIyMjIEV2YWx1YW5kbyBsYSBwZXJmb3JtYW5jZSBkZWwgbW9kZWxvLg0KDQoNCmBgYHtyIGVjaG89VFJVRX0NCmxpYnJhcnkoY2xhc3MpDQpkYXRhX3Rlc3RfcHJlZCA8LSBrbm4odHJhaW49ZGF0YV90cmFpbiwgdGVzdD1kYXRhX3Rlc3QsIGNsPWRhdGFfdHJhaW5fbGFiZWxzLCBrPTIxKQ0KYGBgDQoNCkVsIHNpZ3VpZW50ZSBwYXNvIGVuIGVsIHByb2Nlc28gZXMgZXZhbHVhciBjb21vIGxhcyBjbGFzZXMgcHJlZGljaGFzICBlbiBkYXRhX3Rlc3RfcHJlZA0Kc2UgY29uZGljZW4gY29uIGxvcyB2YWxvcmVzIHZlcmRhZGVyb3MgZW4gZWwgdmVjdG9yIGRhdGFfdGVzdF9sYWJlbHMuDQoNCmBgYHtyIGVjaG89VFJVRX0NCmxpYnJhcnkoZ21vZGVscykNCkNyb3NzVGFibGUoeD1kYXRhX3Rlc3RfbGFiZWxzLCB5PWRhdGFfdGVzdF9wcmVkLCBwcm9wLmNoaXNxID0gRkFMU0UpDQpgYGANCg0K</div>
 
 
 
