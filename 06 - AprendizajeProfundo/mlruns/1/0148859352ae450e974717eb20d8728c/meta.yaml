@@ -1,0 +1,15 @@
+artifact_uri: file:///home/diplodatos/DiploDatos/06%20-%20AprendizajeProfundo/mlruns/1/0148859352ae450e974717eb20d8728c/artifacts
+end_time: 1571088061104
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 0148859352ae450e974717eb20d8728c
+run_uuid: 0148859352ae450e974717eb20d8728c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1571088046612
+status: 3
+tags: []
+user_id: manueldiplo
